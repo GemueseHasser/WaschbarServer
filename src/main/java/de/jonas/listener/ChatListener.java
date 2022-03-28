@@ -1,7 +1,7 @@
 package de.jonas.listener;
 
 import de.jonas.WaschbarServer;
-import de.jonas.object.WaschbarUser;
+import de.jonas.object.unit.WaschbarUser;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

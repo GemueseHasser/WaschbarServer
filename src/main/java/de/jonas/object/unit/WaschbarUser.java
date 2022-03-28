@@ -1,4 +1,4 @@
-package de.jonas.object;
+package de.jonas.object.unit;
 
 import lombok.Getter;
 import net.md_5.bungee.api.chat.BaseComponent;

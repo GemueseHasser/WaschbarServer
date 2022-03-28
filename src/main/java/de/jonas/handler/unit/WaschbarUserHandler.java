@@ -1,6 +1,6 @@
-package de.jonas.handler;
+package de.jonas.handler.unit;
 
-import de.jonas.object.WaschbarUser;
+import de.jonas.object.unit.WaschbarUser;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 

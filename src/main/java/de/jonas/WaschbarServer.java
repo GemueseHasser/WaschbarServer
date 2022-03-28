@@ -1,11 +1,12 @@
 package de.jonas;
 
-import de.jonas.handler.WaschbarUserHandler;
+import de.jonas.handler.unit.WaschbarUserHandler;
 import de.jonas.listener.ChatListener;
 import de.jonas.listener.JoinQuitListener;
-import de.jonas.object.WaschbarUser;
+import de.jonas.object.unit.WaschbarUser;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +21,9 @@ public final class WaschbarServer extends JavaPlugin {
     /** Die Instanz, mit der man auf dieses Plugin zugreifen kann. */
     @Getter
     private static WaschbarServer instance;
+    /** Der Prefix dieses Plugins. */
+    @Getter
+    private static String prefix;
     //</editor-fold>
 
     //<editor-fold desc="LOCAL FIELDS">
@@ -37,6 +41,9 @@ public final class WaschbarServer extends JavaPlugin {
 
         // declare instance
         instance = this;
+
+        // declare prefix
+        prefix = ChatColor.DARK_GRAY + "[" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Waschbär" + ChatColor.DARK_GRAY + "]";
 
         // load listener
         final PluginManager pm = Bukkit.getPluginManager();
