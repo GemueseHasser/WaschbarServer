@@ -21,12 +21,12 @@ public final class WaschbarUser {
     @NotNull
     private static final BaseComponent[] PLAYER_LIST_FOOTER =
         new ComponentBuilder(
-            "Der Server der "
-        ).color(net.md_5.bungee.api.ChatColor.DARK_GRAY)
+            "\n\n"
+        )
             .append(
-                "\n\n",
+                "Der Server der ",
                 NONE
-            )
+            ).color(net.md_5.bungee.api.ChatColor.GRAY)
             .append(
                 "Waschbären",
                 NONE
@@ -34,7 +34,7 @@ public final class WaschbarUser {
             .append(
                 "!",
                 NONE
-            ).color(net.md_5.bungee.api.ChatColor.DARK_GRAY)
+            ).color(net.md_5.bungee.api.ChatColor.GRAY)
             .append(
                 "\n\n",
                 NONE
