@@ -1,7 +1,7 @@
 package de.jonas;
 
 import de.jonas.handler.WaschbarUserHandler;
-import de.jonas.listener.JoinListener;
+import de.jonas.listener.JoinQuitListener;
 import de.jonas.object.WaschbarUser;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -39,7 +39,7 @@ public final class WaschbarServer extends JavaPlugin {
 
         // load listener
         final PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new JoinListener(), this);
+        pm.registerEvents(new JoinQuitListener(), this);
 
         getSLF4JLogger().info("Das Plugin wurde erfolgreich geladen.");
     }
