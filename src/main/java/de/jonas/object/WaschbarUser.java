@@ -50,12 +50,10 @@ public final class WaschbarUser {
     private final Player player;
     /** Der Name, aus dem der gesamte CustomName besteht, jedoch nur der Name an sich. */
     @Getter
-    @NotNull
-    private final String customName;
+    private String customName;
     /** Der Name, der auf jeden Spieler angepasst wird und der auch überall angezeigt wird. */
     @Getter
-    @NotNull
-    private final String wholeCustomName;
+    private String wholeCustomName;
     //</editor-fold>
 
 
@@ -72,18 +70,7 @@ public final class WaschbarUser {
     public WaschbarUser(@NotNull final Player player) {
         this.player = player;
 
-        if (player.isOp()) {
-            this.customName = ChatColor.DARK_RED.toString() + ChatColor.BOLD + player.getDisplayName();
-        } else {
-            this.customName = ChatColor.GRAY.toString() + ChatColor.BOLD + player.getDisplayName();
-        }
-
-        if (player.isOp()) {
-            this.wholeCustomName = ChatColor.RED.toString() + ChatColor.BOLD + "[" + this.customName
-                + ChatColor.RED + ChatColor.BOLD + "]";
-        } else {
-            this.wholeCustomName = ChatColor.GRAY + "[" + this.customName + ChatColor.GRAY + "]";
-        }
+        setName();
     }
     //</editor-fold>
 
@@ -93,11 +80,11 @@ public final class WaschbarUser {
      */
     public void loadDisplay() {
         // set custom name
-        player.setDisplayName(this.customName);
-        player.setPlayerListName(this.customName);
+        this.player.setDisplayName(this.customName);
+        this.player.setPlayerListName(this.customName);
 
         // load tablist
-        player.setPlayerListHeaderFooter(
+        this.player.setPlayerListHeaderFooter(
             new ComponentBuilder(
                 "\n\n"
             ).color(net.md_5.bungee.api.ChatColor.GRAY)
@@ -116,6 +103,36 @@ public final class WaschbarUser {
                 .create(),
             PLAYER_LIST_FOOTER
         );
+    }
+
+    /**
+     * Nickt einen Spieler mithilfe eines bestimmten Namen.
+     *
+     * @param name Der Name, mit dem der Spieler genickt werden soll.
+     */
+    public void nick(@NotNull final String name) {
+        this.player.setDisplayName(name);
+        this.player.setPlayerListName(name);
+
+        setName();
+    }
+
+    /**
+     * Setzt den Namen des Nutzers.
+     */
+    private void setName() {
+        if (player.isOp()) {
+            this.customName = ChatColor.DARK_RED.toString() + ChatColor.BOLD + player.getDisplayName();
+        } else {
+            this.customName = ChatColor.GRAY.toString() + ChatColor.BOLD + player.getDisplayName();
+        }
+
+        if (player.isOp()) {
+            this.wholeCustomName = ChatColor.RED.toString() + ChatColor.BOLD + "[" + this.customName
+                + ChatColor.RED + ChatColor.BOLD + "]";
+        } else {
+            this.wholeCustomName = ChatColor.GRAY + "[" + this.customName + ChatColor.GRAY + "]";
+        }
     }
 
 }
