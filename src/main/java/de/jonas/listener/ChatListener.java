@@ -18,7 +18,16 @@ public final class ChatListener implements Listener {
     public void onChat(@NotNull final AsyncPlayerChatEvent e) {
         final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(e.getPlayer()).orElseThrow();
 
-        e.setFormat(user.getWholeCustomName() + ChatColor.GRAY + " > " + ChatColor.WHITE + e.getMessage());
+        final String message = e.getMessage()
+            .replaceAll("<3", "❤")
+            .replaceAll("#penis", "╰⋃╯");
+
+        if (e.getPlayer().isOp()) {
+            e.setFormat(user.getWholeCustomName() + ChatColor.GRAY + " > " + ChatColor.WHITE
+                + ChatColor.translateAlternateColorCodes('&', message));
+        } else {
+            e.setFormat(user.getWholeCustomName() + ChatColor.GRAY + " > " + ChatColor.WHITE + message);
+        }
     }
     //</editor-fold>
 
