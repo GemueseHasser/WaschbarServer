@@ -18,6 +18,7 @@ public final class WaschbarServer extends JavaPlugin {
     private static WaschbarServer instance;
     //</editor-fold>
 
+
     //<editor-fold desc="setup and startup">
     @Override
     public void onEnable() {
@@ -34,10 +35,13 @@ public final class WaschbarServer extends JavaPlugin {
     }
     //</editor-fold>
 
+
     //<editor-fold desc="stop">
     @Override
     public void onDisable() {
         super.onDisable();
+
+        getSLF4JLogger().info("Das Plugin wurde gestoppt.");
     }
     //</editor-fold>
 
