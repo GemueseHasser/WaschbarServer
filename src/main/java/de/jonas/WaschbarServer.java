@@ -1,5 +1,7 @@
 package de.jonas;
 
+import de.jonas.command.AdminCommand;
+import de.jonas.handler.command.CommandHandler;
 import de.jonas.handler.unit.WaschbarUserHandler;
 import de.jonas.listener.ChatListener;
 import de.jonas.listener.JoinQuitListener;
@@ -31,6 +33,9 @@ public final class WaschbarServer extends JavaPlugin {
     @Getter
     @NotNull
     private final WaschbarUserHandler waschbarUserHandler = new WaschbarUserHandler();
+    /** Mithilfe des {@link CommandHandler} werden alle Befehle registriert. */
+    @NotNull
+    private final CommandHandler commandHandler = new CommandHandler();
     //</editor-fold>
 
 
@@ -43,7 +48,15 @@ public final class WaschbarServer extends JavaPlugin {
         instance = this;
 
         // declare prefix
-        prefix = ChatColor.DARK_GRAY + "[" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Waschbär" + ChatColor.DARK_GRAY + "]";
+        prefix = ChatColor.DARK_GRAY + "[" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Waschbär" + ChatColor.DARK_GRAY + "] "
+            + ChatColor.WHITE;
+
+        // register commands
+        this.commandHandler.register(
+            new Class[]{
+                AdminCommand.class,
+            }
+        );
 
         // load listener
         final PluginManager pm = Bukkit.getPluginManager();
@@ -59,6 +72,8 @@ public final class WaschbarServer extends JavaPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
+
+        this.commandHandler.unregisterAll();
 
         getSLF4JLogger().info("Das Plugin wurde gestoppt.");
     }

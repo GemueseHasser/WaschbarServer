@@ -112,9 +112,17 @@ public final class WaschbarUser {
      */
     public void nick(@NotNull final String name) {
         this.player.setDisplayName(name);
-        this.player.setPlayerListName(name);
-
         setName();
+        this.player.setPlayerListName(this.customName);
+    }
+
+    /**
+     * Setzt den Namen des Nutzers wieder auf seinen ursprünglichen, richtigen Namen.
+     */
+    public void unnick() {
+        this.player.setDisplayName(this.player.getName());
+        setName();
+        this.player.setPlayerListName(this.customName);
     }
 
     /**
@@ -131,7 +139,7 @@ public final class WaschbarUser {
             this.wholeCustomName = ChatColor.RED.toString() + ChatColor.BOLD + "[" + this.customName
                 + ChatColor.RED + ChatColor.BOLD + "]";
         } else {
-            this.wholeCustomName = ChatColor.GRAY + "[" + this.customName + ChatColor.GRAY + "]";
+            this.wholeCustomName = ChatColor.DARK_GRAY + "[" + this.customName + ChatColor.DARK_GRAY + "]";
         }
     }
 
