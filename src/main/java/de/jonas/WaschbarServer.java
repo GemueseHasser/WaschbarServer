@@ -1,10 +1,13 @@
 package de.jonas;
 
+import de.jonas.handler.WaschbarUserHandler;
 import de.jonas.listener.JoinListener;
+import de.jonas.object.WaschbarUser;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Die Haupt- und Main-Klasse dieses Plugins, worin das gesamte Plugin initialisiert wird. Diese Klasse wird vom Server
@@ -16,6 +19,13 @@ public final class WaschbarServer extends JavaPlugin {
     /** Die Instanz, mit der man auf dieses Plugin zugreifen kann. */
     @Getter
     private static WaschbarServer instance;
+    //</editor-fold>
+
+    //<editor-fold desc="LOCAL FIELDS">
+    /** Der {@link WaschbarUserHandler}, mit dem alle {@link WaschbarUser} auf diesem Netzwerk verarbeitet werden. */
+    @Getter
+    @NotNull
+    private final WaschbarUserHandler waschbarUserHandler = new WaschbarUserHandler();
     //</editor-fold>
 
 
