@@ -1,6 +1,7 @@
 package de.jonas;
 
 import de.jonas.command.AdminCommand;
+import de.jonas.command.UserCommand;
 import de.jonas.handler.command.CommandHandler;
 import de.jonas.handler.unit.WaschbarUserHandler;
 import de.jonas.listener.ChatListener;
@@ -55,6 +56,7 @@ public final class WaschbarServer extends JavaPlugin {
         this.commandHandler.register(
             new Class[]{
                 AdminCommand.class,
+                UserCommand.class,
             }
         );
 
