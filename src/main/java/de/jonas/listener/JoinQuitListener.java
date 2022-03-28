@@ -23,7 +23,7 @@ public final class JoinQuitListener implements Listener {
         user.loadDisplay();
 
         e.setJoinMessage(
-            ChatColor.DARK_GRAY + "Der Spieler " + user.getCustomName() + ChatColor.DARK_GRAY + " hat den Server betreten."
+            ChatColor.DARK_GRAY + "Der Spieler " + user.getWholeCustomName() + ChatColor.DARK_GRAY + " hat den Server betreten."
         );
     }
     //</editor-fold>
@@ -35,7 +35,7 @@ public final class JoinQuitListener implements Listener {
         final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(e.getPlayer()).orElseThrow();
 
         e.setQuitMessage(
-            ChatColor.DARK_GRAY + "Der Spieler " + user.getCustomName() + ChatColor.DARK_GRAY + " hat den Server verlassen."
+            ChatColor.DARK_GRAY + "Der Spieler " + user.getWholeCustomName() + ChatColor.DARK_GRAY + " hat den Server verlassen."
         );
     }
     //</editor-fold>

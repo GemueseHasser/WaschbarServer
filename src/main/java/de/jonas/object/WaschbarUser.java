@@ -24,6 +24,10 @@ public final class WaschbarUser {
             "Der Server der "
         ).color(net.md_5.bungee.api.ChatColor.DARK_GRAY)
             .append(
+                "\n\n",
+                NONE
+            )
+            .append(
                 "Waschbären",
                 NONE
             ).color(net.md_5.bungee.api.ChatColor.DARK_AQUA).bold(true)
@@ -31,6 +35,10 @@ public final class WaschbarUser {
                 "!",
                 NONE
             ).color(net.md_5.bungee.api.ChatColor.DARK_GRAY)
+            .append(
+                "\n\n",
+                NONE
+            )
             .create();
     //</editor-fold>
 
@@ -40,10 +48,14 @@ public final class WaschbarUser {
     @Getter
     @NotNull
     private final Player player;
-    /** Der Name, der auf jeden Spieler angepasst wird und der auch überall angezeigt wird. */
+    /** Der Name, aus dem der gesamte CustomName besteht, jedoch nur der Name an sich. */
     @Getter
     @NotNull
     private final String customName;
+    /** Der Name, der auf jeden Spieler angepasst wird und der auch überall angezeigt wird. */
+    @Getter
+    @NotNull
+    private final String wholeCustomName;
     //</editor-fold>
 
 
@@ -61,10 +73,16 @@ public final class WaschbarUser {
         this.player = player;
 
         if (player.isOp()) {
-            this.customName = ChatColor.RED.toString() + ChatColor.BOLD + "["
-                + ChatColor.DARK_RED + ChatColor.BOLD + player.getDisplayName() + ChatColor.RED + ChatColor.BOLD + "[";
+            this.customName = ChatColor.DARK_RED.toString() + ChatColor.BOLD + player.getDisplayName();
         } else {
-            this.customName = ChatColor.GRAY + "[" + ChatColor.BOLD + player.getDisplayName() + ChatColor.GRAY + "]";
+            this.customName = ChatColor.GRAY.toString() + ChatColor.BOLD + player.getDisplayName();
+        }
+
+        if (player.isOp()) {
+            this.wholeCustomName = ChatColor.RED.toString() + ChatColor.BOLD + "[" + this.customName
+                + ChatColor.RED + ChatColor.BOLD + "]";
+        } else {
+            this.wholeCustomName = ChatColor.GRAY + "[" + this.customName + ChatColor.GRAY + "]";
         }
     }
     //</editor-fold>
@@ -81,12 +99,20 @@ public final class WaschbarUser {
         // load tablist
         player.setPlayerListHeaderFooter(
             new ComponentBuilder(
-                "Willkommen, "
+                "\n\n"
             ).color(net.md_5.bungee.api.ChatColor.GRAY)
+                .append(
+                    "Willkommen, ",
+                    NONE
+                ).color(net.md_5.bungee.api.ChatColor.GRAY)
                 .append(
                     this.customName,
                     NONE
                 ).bold(true)
+                .append(
+                    "\n\n",
+                    NONE
+                )
                 .create(),
             PLAYER_LIST_FOOTER
         );

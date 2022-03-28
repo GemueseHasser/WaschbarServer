@@ -18,7 +18,7 @@ public final class ChatListener implements Listener {
     public void onChat(@NotNull final AsyncPlayerChatEvent e) {
         final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(e.getPlayer()).orElseThrow();
 
-        e.setFormat(user.getCustomName() + ChatColor.GRAY + " > " + ChatColor.WHITE + e.getMessage());
+        e.setFormat(user.getWholeCustomName() + ChatColor.GRAY + " > " + ChatColor.WHITE + e.getMessage());
     }
     //</editor-fold>
 
