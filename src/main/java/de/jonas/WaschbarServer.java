@@ -50,7 +50,7 @@ public final class WaschbarServer extends JavaPlugin {
 
         // declare prefix
         prefix = ChatColor.DARK_GRAY + "[" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Waschbär" + ChatColor.DARK_GRAY + "] "
-            + ChatColor.WHITE;
+            + ChatColor.GRAY;
 
         // register commands
         this.commandHandler.register(
