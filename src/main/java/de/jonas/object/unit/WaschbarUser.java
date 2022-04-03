@@ -54,6 +54,9 @@ public final class WaschbarUser {
     /** Der Name, der auf jeden Spieler angepasst wird und der auch überall angezeigt wird. */
     @Getter
     private String wholeCustomName;
+    /** Die Blöcke, die ein Spieler auf diesem Server gebaut hat. */
+    @Getter
+    private int builtBlocks;
     //</editor-fold>
 
 
@@ -123,6 +126,13 @@ public final class WaschbarUser {
         this.player.setDisplayName(this.player.getName());
         setName();
         this.player.setPlayerListName(this.customName);
+    }
+
+    /**
+     * Erhöht die Anzahl an gebauten Blöcken dieses Nutzers um 1.
+     */
+    public void incrementBuiltBlocks() {
+        this.builtBlocks += 1;
     }
 
     /**
