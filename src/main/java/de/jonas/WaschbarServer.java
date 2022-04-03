@@ -4,6 +4,7 @@ import de.jonas.command.AdminCommand;
 import de.jonas.command.UserCommand;
 import de.jonas.handler.command.CommandHandler;
 import de.jonas.handler.unit.WaschbarUserHandler;
+import de.jonas.listener.BlockPlaceBreakListener;
 import de.jonas.listener.ChatListener;
 import de.jonas.listener.JoinQuitListener;
 import de.jonas.object.unit.WaschbarUser;
@@ -67,6 +68,7 @@ public final class WaschbarServer extends JavaPlugin {
         final PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new JoinQuitListener(), this);
         pm.registerEvents(new ChatListener(), this);
+        pm.registerEvents(new BlockPlaceBreakListener(), this);
 
         // schedule periodic scoreboard updating
         getSLF4JLogger().info("Schedule periodic scoreboard updating.");

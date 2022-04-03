@@ -136,6 +136,13 @@ public final class WaschbarUser {
     }
 
     /**
+     * Reduziert die Anzahl an gebauten Blöcken dieses Nutzers um 1.
+     */
+    public void reduceBuiltBlocks() {
+        this.builtBlocks -= 1;
+    }
+
+    /**
      * Setzt den Namen des Nutzers.
      */
     private void setName() {
