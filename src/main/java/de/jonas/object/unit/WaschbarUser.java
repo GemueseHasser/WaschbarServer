@@ -1,5 +1,6 @@
 package de.jonas.object.unit;
 
+import de.jonas.handler.util.ConfigurationHandler;
 import lombok.Getter;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -73,7 +74,14 @@ public final class WaschbarUser {
     public WaschbarUser(@NotNull final Player player) {
         this.player = player;
 
+        // set player name
         setName();
+
+        // load built blocks from config
+        this.builtBlocks = (int) ConfigurationHandler.getConfiguration(
+            "builtBlocks.yml",
+            "blocks." + player.getUniqueId().toString()
+        );
     }
     //</editor-fold>
 
@@ -105,6 +113,18 @@ public final class WaschbarUser {
                 )
                 .create(),
             PLAYER_LIST_FOOTER
+        );
+    }
+
+    /**
+     * Speichert alle Daten dieses Nutzers ab.
+     */
+    public void saveUser() {
+        // save built blocks
+        ConfigurationHandler.setConfiguration(
+            "builtBlocks.yml",
+            "blocks." + player.getUniqueId().toString(),
+            this.builtBlocks
         );
     }
 

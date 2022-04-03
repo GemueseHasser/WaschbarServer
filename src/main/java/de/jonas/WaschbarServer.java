@@ -88,7 +88,11 @@ public final class WaschbarServer extends JavaPlugin {
     public void onDisable() {
         super.onDisable();
 
+        // unregister all commands
         this.commandHandler.unregisterAll();
+
+        // save all users
+        this.waschbarUserHandler.saveAllUsers();
 
         getSLF4JLogger().info("The plugin has been stopped");
     }

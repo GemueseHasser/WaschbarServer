@@ -49,6 +49,15 @@ public final class WaschbarUserHandler {
     }
 
     /**
+     * Speichert alle Daten dieses Nutzer-Objekts ab.
+     */
+    public void saveAllUsers() {
+        for (@NotNull final WaschbarUser user : this.onlineUsers) {
+            user.saveUser();
+        }
+    }
+
+    /**
      * Gibt einen {@link WaschbarUser} zurück, der auf einem bestimmten Spieler basiert, zufalls dieser in diesem
      * Handler registriert ist.
      *
