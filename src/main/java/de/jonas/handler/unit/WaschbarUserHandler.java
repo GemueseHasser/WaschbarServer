@@ -1,6 +1,7 @@
 package de.jonas.handler.unit;
 
 import de.jonas.object.unit.WaschbarUser;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +18,7 @@ public final class WaschbarUserHandler {
 
     //<editor-fold desc="LOCAL FIELDS">
     /** Eine Liste aller {@link WaschbarUser}, welche momentan in diesem Handler registriert sind. */
+    @Getter
     @NotNull
     private final List<WaschbarUser> onlineUsers = new ArrayList<>();
     //</editor-fold>

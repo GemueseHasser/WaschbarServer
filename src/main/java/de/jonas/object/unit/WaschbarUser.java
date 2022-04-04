@@ -77,11 +77,15 @@ public final class WaschbarUser {
         // set player name
         setName();
 
-        // load built blocks from config
-        this.builtBlocks = (int) ConfigurationHandler.getConfiguration(
+        final Object configBlocks = ConfigurationHandler.getConfiguration(
             "builtBlocks.yml",
             "blocks." + player.getUniqueId().toString()
         );
+
+        if (configBlocks == null) return;
+
+        // load built blocks from config
+        this.builtBlocks = (int) configBlocks;
     }
     //</editor-fold>
 

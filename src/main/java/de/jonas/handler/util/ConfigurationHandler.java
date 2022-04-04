@@ -24,7 +24,7 @@ public final class ConfigurationHandler {
         @NotNull final String file,
         @NotNull final String path
     ) {
-        final File configFile = new File("WaschbarServer/" + file);
+        final File configFile = new File("plugins/WaschbarServer", file);
         final FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
         return config.get(path);
@@ -43,7 +43,7 @@ public final class ConfigurationHandler {
         @NotNull final String path,
         @NotNull final Object data
     ) {
-        final File configFile = new File("WaschbarServer/" + file);
+        final File configFile = new File("plugins/WaschbarServer", file);
         final FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
         config.set(path, data);

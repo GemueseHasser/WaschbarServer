@@ -39,12 +39,15 @@ public final class JoinQuitListener implements Listener {
     //<editor-fold desc="quit">
     @EventHandler
     public void onQuit(@NotNull final PlayerQuitEvent e) {
-        WaschbarServer.getInstance().getWaschbarUserHandler().quit(e.getPlayer());
         final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(e.getPlayer()).orElseThrow();
+
+        user.saveUser();
 
         e.setQuitMessage(
             ChatColor.DARK_GRAY + "Der Waschbär " + user.getCustomName() + ChatColor.DARK_GRAY + " hat den Server verlassen."
         );
+
+        WaschbarServer.getInstance().getWaschbarUserHandler().quit(e.getPlayer());
     }
     //</editor-fold>
 
