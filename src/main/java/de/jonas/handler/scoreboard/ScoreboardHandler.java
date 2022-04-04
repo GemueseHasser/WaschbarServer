@@ -56,4 +56,27 @@ public final class ScoreboardHandler {
         user.getPlayer().setScoreboard(scoreboard);
     }
 
+    /**
+     * Aktualisiert die Inhalte des Scoreboards des Spielers, ohne dass das Scoreboard neu gesetzt wird, um die
+     * Performance des Scoreboards zu optimieren und Flackern zu vermeiden.
+     *
+     * @param user Der Nutzer, dessen Scoreboard aktualisiert wird.
+     */
+    public static void updateScoreboard(@NotNull final WaschbarUser user) {
+        // get user scoreboard
+        final Scoreboard scoreboard = user.getPlayer().getScoreboard();
+
+        // get objective
+        final Objective objective = scoreboard.getObjective("abcde");
+
+        // update built blocks team
+        final Team team = scoreboard.getTeam("builtBlocks");
+        team.setPrefix(ChatColor.GRAY + "➤ ");
+        team.setSuffix(ChatColor.WHITE.toString() + ChatColor.BOLD + user.getBuiltBlocks());
+        team.addEntry(ChatColor.BLACK.toString());
+
+        // update
+        objective.getScore(ChatColor.BLACK.toString()).setScore(8);
+    }
+
 }

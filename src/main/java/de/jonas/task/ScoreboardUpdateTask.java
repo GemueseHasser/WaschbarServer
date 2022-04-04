@@ -17,7 +17,7 @@ public final class ScoreboardUpdateTask extends BukkitRunnable {
     @Override
     public void run() {
         for (@NotNull final WaschbarUser user : WaschbarServer.getInstance().getWaschbarUserHandler().getOnlineUsers()) {
-            ScoreboardHandler.setScoreboard(user);
+            ScoreboardHandler.updateScoreboard(user);
         }
     }
     //</editor-fold>

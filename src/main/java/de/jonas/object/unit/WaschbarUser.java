@@ -1,5 +1,6 @@
 package de.jonas.object.unit;
 
+import de.jonas.handler.scoreboard.ScoreboardHandler;
 import de.jonas.handler.util.ConfigurationHandler;
 import lombok.Getter;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -118,6 +119,9 @@ public final class WaschbarUser {
                 .create(),
             PLAYER_LIST_FOOTER
         );
+
+        // load scoreboard
+        ScoreboardHandler.setScoreboard(this);
     }
 
     /**
