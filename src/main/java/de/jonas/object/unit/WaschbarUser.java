@@ -3,6 +3,7 @@ package de.jonas.object.unit;
 import de.jonas.handler.scoreboard.ScoreboardHandler;
 import de.jonas.handler.util.ConfigurationHandler;
 import lombok.Getter;
+import lombok.Setter;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import org.bukkit.ChatColor;
@@ -59,6 +60,10 @@ public final class WaschbarUser {
     /** Die Blöcke, die ein Spieler auf diesem Server gebaut hat. */
     @Getter
     private int builtBlocks;
+    /** Der Spieler, mit dem dieser Nutzer zuletzt privat Nachrichten ausgetauscht hat. */
+    @Getter
+    @Setter
+    private Player lastConversation;
     //</editor-fold>
 
 
