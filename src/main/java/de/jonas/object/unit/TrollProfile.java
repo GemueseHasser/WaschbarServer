@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 @RequiredArgsConstructor
 public final class TrollProfile {
 
+    //<editor-fold desc="LOCAL FIELDS">
     /** Der Spieler, auf den sich dieses {@link TrollProfile} bezieht. */
     @NotNull
     private final Player player;
@@ -27,6 +28,7 @@ public final class TrollProfile {
     private boolean vanish;
     /** Der Zustand, ob der Nutzer, dem dieses Profil zugeordnet ist knockback bekommt. */
     private boolean knockback;
+    //</editor-fold>
 
 
     /**

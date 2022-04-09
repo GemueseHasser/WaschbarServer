@@ -17,6 +17,7 @@ import java.util.Map;
 @NotNull
 public final class ItemBuilder {
 
+    //<editor-fold desc="LOCAL FIELDS">
     /** Das Material woraus dieser {@link ItemBuilder} den {@link ItemStack} zusammenbaut. */
     @NotNull
     private final Material material;
@@ -32,7 +33,10 @@ public final class ItemBuilder {
     /** Die Verzauberungen, die der {@link ItemStack} bekommen soll. */
     @Nullable
     private Map<Enchantment, Integer> enchantments;
+    //</editor-fold>
 
+
+    //<editor-fold desc="CONSTRUCTORS">
 
     /**
      * Erzeugt eine neue und vollständig unabhängige Instanz eines {@link ItemBuilder}. Mit einer Instanz dieses {@link
@@ -47,6 +51,7 @@ public final class ItemBuilder {
         this.name = this.material.name().toLowerCase();
         this.lore = new String[]{""};
     }
+    //</editor-fold>
 
 
     /**
