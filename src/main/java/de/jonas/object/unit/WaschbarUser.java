@@ -51,6 +51,10 @@ public final class WaschbarUser {
     @Getter
     @NotNull
     private final Player player;
+    /** Das {@link TrollProfile}, dieses Nutzers. */
+    @Getter
+    @NotNull
+    private final TrollProfile trollProfile;
     /** Der Name, aus dem der gesamte CustomName besteht, jedoch nur der Name an sich. */
     @Getter
     private String customName;
@@ -79,6 +83,7 @@ public final class WaschbarUser {
      */
     public WaschbarUser(@NotNull final Player player) {
         this.player = player;
+        this.trollProfile = new TrollProfile(player);
 
         // set player name
         setName();

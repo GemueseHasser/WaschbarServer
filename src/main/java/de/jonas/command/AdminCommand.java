@@ -347,6 +347,7 @@ public final class AdminCommand {
     //</editor-fold>
 
     //<editor-fold desc="command: chatclear">
+
     /**
      * Es wird der Befehl implementiert, womit man seine Geschwindigkeit editieren kann.
      *
@@ -370,4 +371,92 @@ public final class AdminCommand {
         }
     }
     //</editor-fold>
+
+    /**
+     * Dieser Troll Befehl umfasst mehrere Trolls, die durch die entsprechenden Argumente eingeleitet werden.
+     *
+     * @param player Der Spieler, der diesen Befehl ausführt.
+     * @param args   Die Argumente, die der Spieler zusätzlich zu dem Befehl eingibt.
+     */
+    @WaschbarCommand(
+        command = "troll",
+        permission = "waschbar.troll",
+        usage = "/troll help",
+        maxLength = 1
+    )
+    public void troll(
+        @NotNull final Player player,
+        @NotNull final String[] args
+    ) {
+        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+
+        if (args.length == 0) {
+            if (user.getTrollProfile().isTroller()) {
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du bist nun kein Troller mehr und sichtbar!"
+                ));
+
+                user.getTrollProfile().setVanish(false);
+            } else {
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du bist nun ein Troller und unsichtbar!"
+                ));
+
+                user.getTrollProfile().setVanish(true);
+            }
+
+            user.getTrollProfile().setTroller(!user.getTrollProfile().isTroller());
+            return;
+        }
+
+        switch (args[0]) {
+            case "help":
+                player.sendMessage(TextComponent.fromLegacyText(
+                    ChatColor.GREEN
+                        + "Troll - Hilfe \n\n"
+                        + ChatColor.GRAY
+                        + "/troll antiknock - schaltet dein Knockback ein / aus \n\n"
+                        + "/troll vanish - Macht dich sichtbar / unsichtbar \n\n"
+                ));
+                break;
+
+            case "antiknock":
+                if (user.getTrollProfile().isKnockback()) {
+                    user.getTrollProfile().setKnockback(false);
+
+                    player.sendMessage(TextComponent.fromLegacyText(
+                        WaschbarServer.getPrefix() + "Dein Knockback wurde nun wieder aktiviert!"
+                    ));
+                    break;
+                }
+
+                user.getTrollProfile().setKnockback(true);
+
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Dein Knockback wurde nun deaktiviert!"
+                ));
+                break;
+
+            case "vanish":
+                if (user.getTrollProfile().isVanish()) {
+                    user.getTrollProfile().setVanish(false);
+
+                    player.sendMessage(TextComponent.fromLegacyText(
+                        WaschbarServer.getPrefix() + "Du bist nun wieder sichtbar!"
+                    ));
+                    break;
+                }
+
+                user.getTrollProfile().setVanish(true);
+
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du bist nun unsichtbar!"
+                ));
+                break;
+
+            default:
+                player.performCommand("troll help");
+                break;
+        }
+    }
 }
