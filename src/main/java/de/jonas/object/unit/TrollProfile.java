@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -55,23 +54,6 @@ public final class TrollProfile {
                 this.player
             );
         }
-    }
-
-    /**
-     * Schaltet das Knockback dieses Spielers ein bzw. aus.
-     *
-     * @param knockback der Zustand, ob das Knockback ein oder ausgeschaltet werden soll.
-     */
-    public void setKnockback(final boolean knockback) {
-        this.knockback = knockback;
-
-        if (this.knockback) {
-            this.player.setVelocity(new Vector(0, 0, 0));
-
-            return;
-        }
-
-        this.player.setVelocity(new Vector(0.4D, 0.4D, 0.4D));
     }
 
 }
