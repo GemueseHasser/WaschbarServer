@@ -13,6 +13,7 @@ import de.jonas.task.UserUpdateTask;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -102,6 +103,14 @@ public final class WaschbarServer extends JavaPlugin {
 
         // save all users
         this.waschbarUserHandler.saveAllUsers();
+
+        // kick all players to guarantee a correct restart
+        for (@NotNull final Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            onlinePlayer.kickPlayer(
+                ChatColor.GRAY.toString() + ChatColor.BOLD + "Du wurdet gekickt, um einen korrekten Neustart zu "
+                    + "garantieren. Bitte joine neu!"
+            );
+        }
 
         getSLF4JLogger().info("The plugin has been stopped");
     }
