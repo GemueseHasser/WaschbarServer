@@ -27,7 +27,7 @@ public final class TrollProfile {
     /** Der Zustand, ob der Nutzer, dem dieses Profil zugeordnet ist unsichtbar ist. */
     private boolean vanish;
     /** Der Zustand, ob der Nutzer, dem dieses Profil zugeordnet ist knockback bekommt. */
-    private boolean knockback;
+    private boolean god;
     //</editor-fold>
 
 

@@ -372,6 +372,7 @@ public final class AdminCommand {
     }
     //</editor-fold>
 
+    //<editor-fold desc="command: troll">
     /**
      * Dieser Troll Befehl umfasst mehrere Trolls, die durch die entsprechenden Argumente eingeleitet werden.
      *
@@ -409,54 +410,64 @@ public final class AdminCommand {
             return;
         }
 
-        switch (args[0]) {
-            case "help":
-                player.sendMessage(TextComponent.fromLegacyText(
-                    ChatColor.GREEN
-                        + "Troll - Hilfe \n\n"
-                        + ChatColor.GRAY
-                        + "/troll antiknock - schaltet dein Knockback ein / aus \n\n"
-                        + "/troll vanish - Macht dich sichtbar / unsichtbar \n\n"
-                ));
-                break;
+        if (!user.getTrollProfile().isTroller()) {
+            player.sendMessage(TextComponent.fromLegacyText(
+                WaschbarServer.getPrefix() + "Du bist kein Troller!"
+            ));
+            return;
+        }
 
-            case "antiknock":
-                if (user.getTrollProfile().isKnockback()) {
-                    user.getTrollProfile().setKnockback(false);
-
+        if (args.length == 1) {
+            switch (args[0]) {
+                case "help":
                     player.sendMessage(TextComponent.fromLegacyText(
-                        WaschbarServer.getPrefix() + "Dein Knockback wurde nun wieder aktiviert!"
+                        ChatColor.GREEN
+                            + "\nTroll - Hilfe \n\n"
+                            + ChatColor.GRAY
+                            + "/troll vanish - Macht dich sichtbar / unsichtbar \n\n"
+                            + "/troll god - versetzt dich in den God-Mode \n\n"
                     ));
                     break;
-                }
 
-                user.getTrollProfile().setKnockback(true);
+                case "vanish":
+                    if (user.getTrollProfile().isVanish()) {
+                        user.getTrollProfile().setVanish(false);
 
-                player.sendMessage(TextComponent.fromLegacyText(
-                    WaschbarServer.getPrefix() + "Dein Knockback wurde nun deaktiviert!"
-                ));
-                break;
+                        player.sendMessage(TextComponent.fromLegacyText(
+                            WaschbarServer.getPrefix() + "Du bist nun wieder sichtbar!"
+                        ));
+                        break;
+                    }
 
-            case "vanish":
-                if (user.getTrollProfile().isVanish()) {
-                    user.getTrollProfile().setVanish(false);
+                    user.getTrollProfile().setVanish(true);
 
                     player.sendMessage(TextComponent.fromLegacyText(
-                        WaschbarServer.getPrefix() + "Du bist nun wieder sichtbar!"
+                        WaschbarServer.getPrefix() + "Du bist nun unsichtbar!"
                     ));
                     break;
-                }
 
-                user.getTrollProfile().setVanish(true);
+                case "god":
+                    if (user.getTrollProfile().isGod()) {
+                        user.getTrollProfile().setGod(false);
 
-                player.sendMessage(TextComponent.fromLegacyText(
-                    WaschbarServer.getPrefix() + "Du bist nun unsichtbar!"
-                ));
-                break;
+                        player.sendMessage(TextComponent.fromLegacyText(
+                            WaschbarServer.getPrefix() + "Du befindest dich nun nicht mehr im God-Mode!"
+                        ));
+                        break;
+                    }
 
-            default:
-                player.performCommand("troll help");
-                break;
+                    user.getTrollProfile().setGod(true);
+
+                    player.sendMessage(TextComponent.fromLegacyText(
+                        WaschbarServer.getPrefix() + "Du wurdest in den God-Mode versetzt!"
+                    ));
+                    break;
+
+                default:
+                    player.performCommand("troll help");
+                    break;
+            }
         }
     }
+    //</editor-fold>
 }

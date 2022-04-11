@@ -6,10 +6,10 @@ import de.jonas.handler.command.CommandHandler;
 import de.jonas.handler.unit.WaschbarUserHandler;
 import de.jonas.listener.BlockPlaceBreakListener;
 import de.jonas.listener.ChatListener;
+import de.jonas.listener.DamageListener;
 import de.jonas.listener.JoinQuitListener;
 import de.jonas.object.unit.WaschbarUser;
 import de.jonas.task.ScoreboardUpdateTask;
-import de.jonas.task.UserUpdateTask;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -71,6 +71,7 @@ public final class WaschbarServer extends JavaPlugin {
         pm.registerEvents(new JoinQuitListener(), this);
         pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new BlockPlaceBreakListener(), this);
+        pm.registerEvents(new DamageListener(), this);
 
         // schedule periodic scoreboard updating
         getSLF4JLogger().info("Schedule periodic scoreboard updating.");
@@ -78,14 +79,6 @@ public final class WaschbarServer extends JavaPlugin {
             this,
             0,
             10
-        );
-
-        // schedule periodic user updating
-        getSLF4JLogger().info("Schedule periodic user updating.");
-        new UserUpdateTask().runTaskTimer(
-            this,
-            0,
-            1
         );
 
         getSLF4JLogger().info("The plugin was loaded successfully.");
