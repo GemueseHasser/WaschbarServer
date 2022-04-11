@@ -26,7 +26,7 @@ public final class TrollProfile {
     private boolean troller;
     /** Der Zustand, ob der Nutzer, dem dieses Profil zugeordnet ist unsichtbar ist. */
     private boolean vanish;
-    /** Der Zustand, ob der Nutzer, dem dieses Profil zugeordnet ist knockback bekommt. */
+    /** Der Zustand, ob sich der Nutzer, dem dieses Profil zugeordnet ist, im God-Mode befindet. */
     private boolean god;
     //</editor-fold>
 
