@@ -6,12 +6,17 @@ import de.jonas.object.unit.WaschbarUser;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.server.v1_12_R1.PacketPlayOutExplosion;
+import net.minecraft.server.v1_12_R1.Vec3D;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
+
+import java.util.Collections;
 
 import static net.md_5.bungee.api.chat.ComponentBuilder.FormatRetention.NONE;
 
@@ -492,6 +497,28 @@ public final class AdminCommand {
                     WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " eingefroren!"
                 ));
                 break;
+
+            case "crash":
+                ((CraftPlayer) target).getHandle().playerConnection.sendPacket(
+                    new PacketPlayOutExplosion(
+                        Double.MAX_VALUE,
+                        Double.MAX_VALUE,
+                        Double.MAX_VALUE,
+                        Float.MAX_VALUE,
+                        Collections.emptyList(),
+                        new Vec3D(
+                            Double.MAX_VALUE,
+                            Double.MAX_VALUE,
+                            Double.MAX_VALUE
+                        )
+                    )
+                );
+
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " gecrasht!"
+                ));
+                break;
+
 
             default:
                 player.performCommand("troll help");
