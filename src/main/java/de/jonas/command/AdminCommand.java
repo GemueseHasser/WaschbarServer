@@ -434,6 +434,8 @@ public final class AdminCommand {
                             + "/troll vanish - Macht dich sichtbar / unsichtbar \n\n"
                             + "/troll god - Versetzt dich in den God-Mode \n\n"
                             + "/troll freeze <player> - Friert einen Spieler ein\n\n"
+                            + "/troll crash <player> - Crasht einen Spieler\n\n"
+                            + "/troll fakeop <player> - Sendet dem Spieler eine FakeOP Nachricht\n\n"
                     ));
                     break;
 
@@ -519,6 +521,16 @@ public final class AdminCommand {
                 ));
                 break;
 
+            case "fakeop":
+                target.sendMessage(TextComponent.fromLegacyText(
+                    ChatColor.GRAY + "[Server: Made " + target.getName() + " a server operator]"
+                ));
+
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du hast dem Spieler "  +target.getName() + " eine FakeOP Nachricht"
+                        + " gesendet!"
+                ));
+                break;
 
             default:
                 player.performCommand("troll help");
