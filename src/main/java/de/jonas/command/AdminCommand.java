@@ -373,6 +373,7 @@ public final class AdminCommand {
     //</editor-fold>
 
     //<editor-fold desc="command: troll">
+
     /**
      * Dieser Troll Befehl umfasst mehrere Trolls, die durch die entsprechenden Argumente eingeleitet werden.
      *
@@ -383,7 +384,7 @@ public final class AdminCommand {
         command = "troll",
         permission = "waschbar.troll",
         usage = "/troll help",
-        maxLength = 1
+        maxLength = 2
     )
     public void troll(
         @NotNull final Player player,
@@ -424,8 +425,10 @@ public final class AdminCommand {
                         ChatColor.GREEN
                             + "\nTroll - Hilfe \n\n"
                             + ChatColor.GRAY
+                            + "/troll - Macht dich zu einem Troller\n\n"
                             + "/troll vanish - Macht dich sichtbar / unsichtbar \n\n"
-                            + "/troll god - versetzt dich in den God-Mode \n\n"
+                            + "/troll god - Versetzt dich in den God-Mode \n\n"
+                            + "/troll freeze <player> - Friert einen Spieler ein\n\n"
                     ));
                     break;
 
@@ -467,6 +470,32 @@ public final class AdminCommand {
                     player.performCommand("troll help");
                     break;
             }
+        }
+
+        final Player target = Bukkit.getPlayer(args[1]);
+        final WaschbarUser targetUser = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(target).orElseThrow();
+
+        switch (args[0]) {
+            case "freeze":
+                if (targetUser.getTrollProfile().isFreeze()) {
+                    targetUser.getTrollProfile().setFreeze(false);
+
+                    player.sendMessage(TextComponent.fromLegacyText(
+                        WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " aufgetaut!"
+                    ));
+                    break;
+                }
+
+                targetUser.getTrollProfile().setFreeze(true);
+
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " eingefroren!"
+                ));
+                break;
+
+            default:
+                player.performCommand("troll help");
+                break;
         }
     }
     //</editor-fold>

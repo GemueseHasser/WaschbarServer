@@ -28,6 +28,8 @@ public final class TrollProfile {
     private boolean vanish;
     /** Der Zustand, ob sich der Nutzer, dem dieses Profil zugeordnet ist, im God-Mode befindet. */
     private boolean god;
+    /** Der Zustand, ob der Spieler ein gefriert ist. */
+    private boolean freeze;
     //</editor-fold>
 
 

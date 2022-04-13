@@ -8,6 +8,7 @@ import de.jonas.listener.BlockPlaceBreakListener;
 import de.jonas.listener.ChatListener;
 import de.jonas.listener.DamageListener;
 import de.jonas.listener.JoinQuitListener;
+import de.jonas.listener.MoveListener;
 import de.jonas.object.unit.WaschbarUser;
 import de.jonas.task.ScoreboardUpdateTask;
 import lombok.Getter;
@@ -72,6 +73,7 @@ public final class WaschbarServer extends JavaPlugin {
         pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new BlockPlaceBreakListener(), this);
         pm.registerEvents(new DamageListener(), this);
+        pm.registerEvents(new MoveListener(), this);
 
         // schedule periodic scoreboard updating
         getSLF4JLogger().info("Schedule periodic scoreboard updating.");
