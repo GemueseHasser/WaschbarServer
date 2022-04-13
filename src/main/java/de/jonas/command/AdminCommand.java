@@ -436,8 +436,9 @@ public final class AdminCommand {
                             + "/troll freeze <player> - Friert einen Spieler ein\n\n"
                             + "/troll crash <player> - Crasht einen Spieler\n\n"
                             + "/troll fakeop <player> - Sendet dem Spieler eine FakeOP Nachricht\n\n"
+                            + "/troll kick <player> - Kickt den Spieler mit einem falschen Fehler vom Server\n\n"
                     ));
-                    break;
+                    return;
 
                 case "vanish":
                     if (user.getTrollProfile().isVanish()) {
@@ -446,7 +447,7 @@ public final class AdminCommand {
                         player.sendMessage(TextComponent.fromLegacyText(
                             WaschbarServer.getPrefix() + "Du bist nun wieder sichtbar!"
                         ));
-                        break;
+                        return;
                     }
 
                     user.getTrollProfile().setVanish(true);
@@ -454,7 +455,7 @@ public final class AdminCommand {
                     player.sendMessage(TextComponent.fromLegacyText(
                         WaschbarServer.getPrefix() + "Du bist nun unsichtbar!"
                     ));
-                    break;
+                    return;
 
                 case "god":
                     if (user.getTrollProfile().isGod()) {
@@ -463,7 +464,7 @@ public final class AdminCommand {
                         player.sendMessage(TextComponent.fromLegacyText(
                             WaschbarServer.getPrefix() + "Du befindest dich nun nicht mehr im God-Mode!"
                         ));
-                        break;
+                        return;
                     }
 
                     user.getTrollProfile().setGod(true);
@@ -471,11 +472,11 @@ public final class AdminCommand {
                     player.sendMessage(TextComponent.fromLegacyText(
                         WaschbarServer.getPrefix() + "Du wurdest in den God-Mode versetzt!"
                     ));
-                    break;
+                    return;
 
                 default:
                     player.performCommand("troll help");
-                    break;
+                    return;
             }
         }
 
@@ -490,7 +491,7 @@ public final class AdminCommand {
                     player.sendMessage(TextComponent.fromLegacyText(
                         WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " aufgetaut!"
                     ));
-                    break;
+                    return;
                 }
 
                 targetUser.getTrollProfile().setFreeze(true);
@@ -498,7 +499,7 @@ public final class AdminCommand {
                 player.sendMessage(TextComponent.fromLegacyText(
                     WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " eingefroren!"
                 ));
-                break;
+                return;
 
             case "crash":
                 ((CraftPlayer) target).getHandle().playerConnection.sendPacket(
@@ -519,7 +520,7 @@ public final class AdminCommand {
                 player.sendMessage(TextComponent.fromLegacyText(
                     WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " gecrasht!"
                 ));
-                break;
+                return;
 
             case "fakeop":
                 target.sendMessage(TextComponent.fromLegacyText(
@@ -527,10 +528,19 @@ public final class AdminCommand {
                 ));
 
                 player.sendMessage(TextComponent.fromLegacyText(
-                    WaschbarServer.getPrefix() + "Du hast dem Spieler "  +target.getName() + " eine FakeOP Nachricht"
+                    WaschbarServer.getPrefix() + "Du hast dem Spieler " + target.getName() + " eine FakeOP Nachricht"
                         + " gesendet!"
                 ));
-                break;
+                return;
+
+            case "kick":
+                target.kickPlayer("java.net.ConnectException: Incorrect.Data.Check: 256978 5895 69455");
+
+                player.sendMessage(TextComponent.fromLegacyText(
+                    WaschbarServer.getPrefix() + "Du hast den Spieler " + target.getName() + " mit einem falschen "
+                        + "Fehler vom Server gekickt!"
+                ));
+                return;
 
             default:
                 player.performCommand("troll help");
