@@ -21,6 +21,7 @@ public final class CommandHandler {
 
     //<editor-fold desc="CONSTANTS">
     /** Alle durch diesen Handler registrierte Befehle. */
+    @NotNull
     private static final Map<String, Command> REGISTERED_COMMANDS = new HashMap<>();
     //</editor-fold>
 

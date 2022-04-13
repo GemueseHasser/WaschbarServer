@@ -59,7 +59,7 @@ public final class UserCommand {
             return;
         }
 
-        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+        final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(player).orElseThrow();
 
         // send message
         sendMessage(user, target, args);
@@ -77,11 +77,11 @@ public final class UserCommand {
         maxLength = Integer.MAX_VALUE,
         usage = "/r <message>"
     )
-    public void r(
+    public void returnMsg(
         @NotNull final Player player,
         @NotNull final String[] args
     ) {
-        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+        final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(player).orElseThrow();
 
         // check if user already has a conversation
         if (user.getLastConversation() == null) {
@@ -128,7 +128,7 @@ public final class UserCommand {
             message.append(args[i]).append(" ");
         }
 
-        final WaschbarUser targetUser = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(target).orElseThrow();
+        final WaschbarUser targetUser = WaschbarServer.getInstance().getUserHandler().getUser(target).orElseThrow();
 
         // set last conversation
         user.setLastConversation(target);
@@ -136,13 +136,13 @@ public final class UserCommand {
 
         // send message
         user.getPlayer().sendMessage(TextComponent.fromLegacyText(
-            user.getWholeCustomName() + ChatColor.DARK_GRAY + " -> " + targetUser.getWholeCustomName() + ChatColor.DARK_GRAY
-                + " : " + message
+            user.getWholeCustomName() + ChatColor.DARK_GRAY + " -> " + targetUser.getWholeCustomName()
+                + ChatColor.DARK_GRAY + " : " + message
         ));
 
         target.sendMessage(TextComponent.fromLegacyText(
-            user.getWholeCustomName() + ChatColor.DARK_GRAY + " -> " + targetUser.getWholeCustomName() + ChatColor.DARK_GRAY
-                + " : " + message
+            user.getWholeCustomName() + ChatColor.DARK_GRAY + " -> " + targetUser.getWholeCustomName()
+                + ChatColor.DARK_GRAY + " : " + message
         ));
     }
     //</editor-fold>

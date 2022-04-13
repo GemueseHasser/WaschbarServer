@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Mithilfe des {@link DamageListener} wird aller Schaden verarbeitet, der einer Entität zugefügt wird.
  */
+@NotNull
 public final class DamageListener implements Listener {
 
     //<editor-fold desc="implementation">
@@ -22,7 +23,7 @@ public final class DamageListener implements Listener {
 
         // get user
         final Player player = (Player) e.getEntity();
-        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+        final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(player).orElseThrow();
 
         // check if user is in god mode
         if (!user.getTrollProfile().isGod()) return;

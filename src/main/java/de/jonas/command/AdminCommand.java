@@ -133,7 +133,7 @@ public final class AdminCommand {
         @NotNull final String[] args
     ) {
         if (args.length == 0) {
-            final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+            final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(player).orElseThrow();
             user.unnick();
 
             player.sendMessage(TextComponent.fromLegacyText(
@@ -158,7 +158,7 @@ public final class AdminCommand {
             return;
         }
 
-        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(target).orElseThrow();
+        final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(target).orElseThrow();
         user.unnick();
 
         player.sendMessage(TextComponent.fromLegacyText(
@@ -176,7 +176,7 @@ public final class AdminCommand {
         @NotNull final Player player,
         @NotNull final String name
     ) {
-        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+        final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(player).orElseThrow();
 
         if (name.length() > 15) {
             player.sendMessage(
@@ -210,7 +210,7 @@ public final class AdminCommand {
         maxLength = 2,
         permission = "waschbar.gamemode",
         usage = "/gamemode <gamemode> [<player>]",
-        aliases = {"gm"}
+        aliases = "gm"
     )
     public void gamemode(
         @NotNull final Player player,
@@ -363,7 +363,7 @@ public final class AdminCommand {
         command = "chatclear",
         permission = "waschbar.cc",
         usage = "/chatclear | /cc",
-        aliases = {"cc"}
+        aliases = "cc"
     )
     public void clearChat(
         @NotNull final Player player,
@@ -395,7 +395,7 @@ public final class AdminCommand {
         @NotNull final Player player,
         @NotNull final String[] args
     ) {
-        final WaschbarUser user = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(player).orElseThrow();
+        final WaschbarUser user = WaschbarServer.getInstance().getUserHandler().getUser(player).orElseThrow();
 
         if (args.length == 0) {
             if (user.getTrollProfile().isTroller()) {
@@ -481,7 +481,7 @@ public final class AdminCommand {
         }
 
         final Player target = Bukkit.getPlayer(args[1]);
-        final WaschbarUser targetUser = WaschbarServer.getInstance().getWaschbarUserHandler().getUser(target).orElseThrow();
+        final WaschbarUser targetUser = WaschbarServer.getInstance().getUserHandler().getUser(target).orElseThrow();
 
         switch (args[0]) {
             case "freeze":

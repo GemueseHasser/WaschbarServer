@@ -25,6 +25,12 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class WaschbarServer extends JavaPlugin {
 
+    //<editor-fold desc="CONSTANTS">
+    /** Der zeitliche Abstand, in dem das Scoreboard eines Spielers konstant aktualisiert wird. */
+    private static final int SCOREBOARD_UPDATING_PERIOD = 10;
+    //</editor-fold>
+
+
     //<editor-fold desc="STATIC FIELDS">
     /** Die Instanz, mit der man auf dieses Plugin zugreifen kann. */
     @Getter
@@ -38,7 +44,7 @@ public final class WaschbarServer extends JavaPlugin {
     /** Der {@link WaschbarUserHandler}, mit dem alle {@link WaschbarUser} auf diesem Netzwerk verarbeitet werden. */
     @Getter
     @NotNull
-    private final WaschbarUserHandler waschbarUserHandler = new WaschbarUserHandler();
+    private final WaschbarUserHandler userHandler = new WaschbarUserHandler();
     /** Mithilfe des {@link CommandHandler} werden alle Befehle registriert. */
     @NotNull
     private final CommandHandler commandHandler = new CommandHandler();
@@ -54,8 +60,8 @@ public final class WaschbarServer extends JavaPlugin {
         instance = this;
 
         // declare prefix
-        prefix = ChatColor.DARK_GRAY + "[" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Waschbär" + ChatColor.DARK_GRAY + "] "
-            + ChatColor.GRAY;
+        prefix = ChatColor.DARK_GRAY + "[" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Waschbär"
+            + ChatColor.DARK_GRAY + "] " + ChatColor.GRAY;
 
         // register commands
         getSLF4JLogger().info("Register all commands.");
@@ -80,7 +86,7 @@ public final class WaschbarServer extends JavaPlugin {
         new ScoreboardUpdateTask().runTaskTimer(
             this,
             0,
-            10
+            SCOREBOARD_UPDATING_PERIOD
         );
 
         getSLF4JLogger().info("The plugin was loaded successfully.");
@@ -97,7 +103,7 @@ public final class WaschbarServer extends JavaPlugin {
         this.commandHandler.unregisterAll();
 
         // save all users
-        this.waschbarUserHandler.saveAllUsers();
+        this.userHandler.saveAllUsers();
 
         // kick all players to guarantee a correct restart
         for (@NotNull final Player onlinePlayer : Bukkit.getOnlinePlayers()) {

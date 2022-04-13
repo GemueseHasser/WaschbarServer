@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 
@@ -20,6 +21,7 @@ public final class ConfigurationHandler {
      *
      * @return Die Daten, die sich in der Datei unter dem bestimmten Pfad befinden.
      */
+    @Nullable
     public static Object getConfiguration(
         @NotNull final String file,
         @NotNull final String path
